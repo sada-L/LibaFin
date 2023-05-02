@@ -126,6 +126,66 @@
             {
                 Console.WriteLine("Вы маслов?");
             }
+            public static void Call5 ()
+            {
+                Console.Write("Число: ");
+                string number = Console.ReadLine();
+                Console.Write("1 CC: ");                              
+                int sys1 = Convert.ToInt32(Console.ReadLine());
+                Console.Write("2 СС: ");
+                int sys2 = Convert.ToInt32(Console.ReadLine());
+                double result = 0;                                    
+                int pow = 0;                                          
+                if (sys1 == sys2)                                     
+                {
+                    Console.WriteLine("Error");
+                }
+
+                while (number.Length > 0)
+                {
+                    string x0 = number.Substring(number.Length - 1, 1); 
+                    switch (x0)
+                    {
+                        case "A": x0 = "10"; break;
+                        case "B": x0 = "11"; break;
+                        case "C": x0 = "12"; break;
+                        case "D": x0 = "13"; break;
+                        case "E": x0 = "14"; break;
+                        case "F": x0 = "15"; break;
+                    }
+                    int  x = Convert.ToInt32(x0);
+                    if (x!= 0)
+                    {
+                        double b = x * Math.Pow(sys1, pow);            
+                        result = b + result;
+                    }
+                    number = number.Substring(0, number.Length - 1);
+                    pow++;
+                }
+                string result2s = Convert.ToString(result);
+                number = result2s;
+                int numberInt = Convert.ToInt32(number);
+                string result1 = "";                                   
+                while (numberInt >= sys2)
+                {
+                    string x = Convert.ToString(numberInt % sys2);
+                    switch (x)
+                    {
+                        case "10": x = "A"; break;
+                        case "11": x = "B"; break;
+                        case "12": x = "C"; break;
+                        case "13": x = "D"; break;
+                        case "14": x = "E"; break;
+                        case "15": x = "F"; break;
+                    }
+                    result1 = x + result1;
+                    numberInt = numberInt / sys2;
+                }
+                string numberResult = Convert.ToString(numberInt);
+                result1 = numberResult + result1;
+                Console.WriteLine(result1);
+
+            }
         }
     }
 }
