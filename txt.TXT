@@ -1,0 +1,388 @@
+/*// Ввод границ отрезка и шага аргумента:
+Console.WriteLine("Построение функции y(x)=cos(x^2)+sin^2(x) на отрезке [a, b] с использованием шага изменения аргумента h.");
+Console.WriteLine("Введите a:");
+double a = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите b:");
+double b = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите h:");
+double h = Convert.ToDouble(Console.ReadLine());
+
+// Ввод массивов для хранения аргументов и значений:
+
+double[] arguments = { };
+double[] values = { };
+
+// Расчёт аргументов:
+for (double x = a; x >= a && x <= b; x = x + h)
+{
+    arguments = arguments.Append(x).ToArray();
+}
+
+// Расчёт значений:
+foreach (double x in arguments)
+{
+    double y = Math.Round((Math.Cos(Math.Pow(x, 2)) + Math.Pow(Math.Sin(x), 2)), 2);
+    values = values.Append(y).ToArray();
+}
+
+// Поиск максимального и минимального значения функции на выбранном отрезке:
+double max = 0;
+for (int i = 0; i <= (values.Length - 1); i++)
+{
+    if (values[i] > max)
+    {
+        max = values[i];
+    }
+}
+double min = 0;
+for (int i = 0; i <= (values.Length - 1); i++)
+{
+    if (values[i] < min)
+    {
+        min = values[i];
+    }
+}
+// Определение количества пересечений функцией оси OX:
+int c = 0; // счётчик для пересечений
+for (int k = 0; k < (values.Length - 1); k++)
+{
+    if (values[k] < 0 && values[k + 1] > 0 || values[k] > 0 && values[k + 1] < 0)
+    {
+        c++;
+    }
+}
+// Вывод таблицы:
+Console.WriteLine("x y");
+for (int i = 0; i < arguments.Length; i++)
+{
+    Console.Write(arguments[i] + " ");
+    Console.Write(values[i] + " ");
+    Console.WriteLine();
+}
+Console.WriteLine();
+
+// Вывод минимального и максимального значений функции:
+Console.WriteLine("min y: " + min);
+Console.WriteLine("max y: " + max);
+
+// Вывод количества смены знаков функции:
+Console.WriteLine($"На заданном отрезке функция меняет знак {c} раз");
+
+*/
+
+
+/*for (int i = 102; i < 987; i++)
+{
+    if (HasUniqureDigits(i))
+    {
+        Console.WriteLine(i);
+    }
+}
+
+
+    static bool HasUniqureDigits(int num)
+{
+    int a = num / 100;
+    int b = num / 10 % 10;
+    int c = num % 10;
+    return a != b && a != c && b != c;
+}*/
+
+/*
+    Console.Write("Введите натуральное число: ");
+    int number = int.Parse(Console.ReadLine());
+    int digitSum = CalculateDigitSum(number);
+    int digitRoot = CalculateDigitRoot(digitSum);
+    Console.WriteLine($"Цифровой корень числа {number}: {digitRoot}");
+
+    static int CalculateDigitSum(int number)
+    {
+        int sum = 0;
+        while (number > 0)
+        {
+            sum += number % 10;
+            number /= 10;
+        }
+        return sum;
+    }
+
+    static int CalculateDigitRoot(int digitSum)
+    {
+        if (digitSum < 10)
+        {
+            return digitSum;
+        }
+        else
+        {
+            return CalculateDigitRoot(CalculateDigitSum(digitSum));
+        }
+    }
+*/
+
+/*int[] sequence = new int[20]; // создание массива для хранения последовательности чисел
+bool isCorrect = true; // переменная для хранения результата проверки последовательности
+
+// заполнение массива случайными числами от 0 до 66
+Random rand = new Random();
+for (int i = 0; i < 20; i++)
+{
+    sequence[i] = rand.Next(0, 67);
+    Console.Write(sequence[i] + " ");
+}
+
+// проверка последовательности
+for (int i = 0; i < 19; i++)
+{
+    int number1 = sequence[i] % 10; // получение цифр чисел
+    int number2 = sequence[i + 1] / 10;
+
+    if (number1 != number2) // сравнение цифр
+    {
+        isCorrect = false; // если не соответствует, то последовательность неверна
+        break;
+    }
+}
+
+// вывод результата
+if (isCorrect)
+{
+    Console.WriteLine("\nПоследовательность соответствует правилам игры в домино.");
+}
+else
+{
+    Console.WriteLine("\nПоследовательность не соответствует правилам игры в домино.");
+}
+
+Console.ReadKey();*/
+
+/*// Запрос ввода пользователем начального и конечного значений отрезка
+Console.Write("Введите начальное значение отрезка: ");
+double a = double.Parse(Console.ReadLine());
+Console.Write("Введите конечное значение отрезка: ");
+double b = double.Parse(Console.ReadLine());
+
+// Запрос ввода пользователем шага изменения аргумента функции x
+Console.Write("Введите шаг изменения аргумента функции x: ");
+double h = double.Parse(Console.ReadLine());
+
+// Вычисление количества точек
+int n = (int)Math.Ceiling((b - a) / h);
+
+// Создание таблицы
+Console.WriteLine("|       x        |        y       |");
+Console.WriteLine("|----------------|----------------|");
+
+// Создание переменных для определения максимального и минимального значения функции
+double maxY = double.MinValue;
+double minY = double.MaxValue;
+
+// Переменная для подсчета количества смен знака функции
+int signChanges = 0;
+
+// Инициализация первого значения аргумента функции
+double x = a;
+
+// Цикл табулирования функции на заданном отрезке с заданным шагом
+for (int i = 0; i <= n; i++)
+{
+    // Вычисление значения функции y на текущей точке
+    double y = Math.Cos(Math.Pow(x, 2)) + Math.Pow(Math.Sin(x), 2);
+
+    // Отображение значения x и y в таблице
+    Console.WriteLine("|{0,16:F4}|{1,16:F4}|", x, y);
+
+    // Обновление максимального и минимального значения функции
+    maxY = Math.Max(maxY, y);
+    minY = Math.Min(minY, y);
+
+    // Определение, меняется ли знак функции на текущей точке
+    if (i > 0 && Math.Sign(y) != Math.Sign(Math.Cos(Math.Pow(x - h, 2)) + Math.Pow(Math.Sin(x - h), 2)))
+    {
+        signChanges++;
+    }
+
+    // Изменение значения аргумента функции на следующий шаг
+    x += h;
+}
+
+// Вывод максимального и минимального значений функции на выбранном отрезке
+Console.WriteLine("\nМаксимальное значение функции на выбранном отрезке: {0:F4}", maxY);
+Console.WriteLine("Минимальное значение функции на выбранном отрезке: {0:F4}", minY);
+
+// Вывод количества смен знака функции на выбранном отрезке
+Console.WriteLine("Количество смен знака функции на выбранном отрезке: {0}", signChanges);
+
+Console.ReadKey();*/
+
+
+/*
+int[] exchangeRates = new int[30]; // массив курсов доллара на каждый день месяца
+Random random = new Random();
+int highestRate, lowestRate, totalRate = 0;
+float averageRate;
+int aboveAverageCount = 0;
+
+// заполняем массив случайными значениями
+for (int i = 0; i < exchangeRates.Length; i++)
+{
+    exchangeRates[i] = random.Next(10, 81);
+}
+
+// находим самый высокий и низкий курсы доллара за месяц
+highestRate = exchangeRates[0];
+lowestRate = exchangeRates[0];
+for (int i = 1; i < exchangeRates.Length; i++)
+{
+    if (exchangeRates[i] > highestRate)
+    {
+        highestRate = exchangeRates[i];
+    }
+    if (exchangeRates[i] < lowestRate)
+    {
+        lowestRate = exchangeRates[i];
+    }
+}
+
+Console.WriteLine($"Самый высокий курс: {highestRate} рублей за доллар");
+Console.WriteLine($"Самый низкий курс: {lowestRate} рублей за доллар");
+
+// предлагаем пользователю ввести сумму для обмена
+Console.Write("Введите сумму для обмена: ");
+int amount = int.Parse(Console.ReadLine());
+
+// ищем наилучший курс для обмена и считаем, сколько будет получено долларов
+float bestRate = 0;
+int dollarAmount = 0;
+for (int i = 0; i < exchangeRates.Length; i++)
+{
+    float rate = (float)amount / exchangeRates[i];
+    if (rate > bestRate)
+    {
+        bestRate = rate;
+        dollarAmount = exchangeRates[i] * (int)rate;
+    }
+}
+
+Console.WriteLine($"Наилучший курс для обмена {amount} рублей: {bestRate.ToString("0.00")} долларов");
+Console.WriteLine($"Вы получите {dollarAmount} долларов");
+
+// находим средний курс доллара за месяц и отклонение курса от этого значения
+for (int i = 0; i < exchangeRates.Length; i++)
+{
+    totalRate += exchangeRates[i];
+}
+averageRate = (float)totalRate / exchangeRates.Length;
+Console.WriteLine($"Средний курс доллара за месяц: {averageRate.ToString("0.00")} рублей за доллар");
+for (int i = 0; i < exchangeRates.Length; i++)
+{
+    float deviation = exchangeRates[i] - averageRate;
+    Console.WriteLine($"Курс доллара за {i + 1}-е число: {exchangeRates[i]} рублей за доллар, отклонение от среднего: {deviation.ToString("0.00")}");
+    if (exchangeRates[i] > averageRate)
+    {
+        aboveAverageCount++;
+    }
+}
+
+Console.WriteLine($"Количество дней, когда курс превышал среднемесячное значение: {aboveAverageCount}");*/
+
+/*using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        for (int i = 102; i < 987; i++)
+        {
+            if (HasUniqureDigits(i))
+            {
+                Console.WriteLine(i);
+            }
+        }
+    }
+
+    static bool HasUniqureDigits(int num)
+    {
+        int a = num / 100;
+        int b = num / 10 % 10;
+        int c = num % 10;
+        return a != b && a != c && b != c;
+    }
+}*/
+
+/*using System;
+
+public class DigitRootProgram
+{
+    public static void Main()
+    {
+        Console.Write("Введите натуральное число: ");
+        int number = int.Parse(Console.ReadLine());
+        int digitSum = CalculateDigitSum(number);
+        int digitRoot = CalculateDigitRoot(digitSum);
+        Console.WriteLine($"Цифровой корень числа {number}: {digitRoot}");
+    }
+
+    static int CalculateDigitSum(int number)
+    {
+        int sum = 0;
+        while (number > 0)
+        {
+            sum += number % 10;
+            number /= 10;
+        }
+        return sum;
+    }
+
+    static int CalculateDigitRoot(int digitSum)
+    {
+        if (digitSum < 10)
+        {
+            return digitSum;
+        }
+        else
+        {
+            return CalculateDigitRoot(CalculateDigitSum(digitSum));
+        }
+    }
+}*/
+/*for (int i = 1; i <= 9; i++)
+{
+    for (int j = 0; j <= 9; j++)
+    {
+        for (int k = 0; k <= 9; k++)
+        {
+            if (i != j && i != k && j != k)
+            {
+                int number = i * 100 + j * 10 + k;
+                Console.WriteLine(number);
+            }
+        }
+    }
+}*/
+
+/*for (int i = 102; i <= 987; i++)
+{
+    if (i / 100 != i / 10 % 10 && i / 100 != i % 10 && i / 10 % 10 != i % 10)
+    {
+        Console.WriteLine(i);
+    }
+}*/
+
+int[] ones = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] tens = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] hundreds = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+for (int i = 1; i < hundreds.Length; i++)
+{
+    for (int j = 0; j < tens.Length; j++)
+    {
+        for (int k = 0; k < ones.Length; k++)
+        {
+            if (hundreds[i] != tens[j] && hundreds[i] != ones[k] && tens[j] != ones[k])
+            {
+                int number = hundreds[i] * 100 + tens[j] * 10 + ones[k];
+                Console.WriteLine(number);
+            }
+        }
+    }
+}
